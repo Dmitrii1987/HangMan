@@ -7,6 +7,42 @@
     <title>HangMan</title>
 </head>
 <body>
-    
+    <script>
+        var words = ["muskrat", "vulture", "lark", "gopher", "platypus"]
+        var word = words[Math.floor(Math.random() * words.length)] // выбирается случайное слово из массива
+        var answerArray = [] // создаём пустой массив и заполняем его символами подчёркивания, кол-во которых равно кол-ву букв в загаданном слове
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_"
+        }
+
+        var remainingLetters = word.length
+        // Игровой цикл
+        while (remainingLetters > 0) {
+            // Показываем состояние игры
+            alert(answerArray.join(" "))
+            // Запрашиваем вариант ответа
+            var guess = prompt("Guess the letter or press Cancel to quit the game")
+            if (guess === null) {
+                // Выходим из игрового цикла
+                break // break используется для выхода из любого цикла
+            } else if (guess.length !==1) {
+                alert ("Enter the only 1 letter please.")
+            } else {
+                // Обновляем состояние игры
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess) {
+                        answerArray[j] = guess
+                        remainingLetters--
+                    }
+                }
+            }
+
+            // Конец игрового цикла
+         }
+
+         // Отображаем ответ
+        alert(answerArray.join(" "))
+        alert("Congrats! The word was " + word)
+    </script>
 </body>
 </html>
